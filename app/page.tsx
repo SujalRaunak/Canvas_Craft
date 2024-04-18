@@ -1,7 +1,10 @@
+import Header from "./_components/header";
+import Hero from "./_components/hero";
 export default function Home() {
   return (
-        <div>
-          <h1>CanvasCraft</h1>
-        </div>
+        <>
+        <Header/>
+        <Hero/>
+        </>
   );
 }
