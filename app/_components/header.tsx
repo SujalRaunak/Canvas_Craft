@@ -1,3 +1,5 @@
+"use client"
+
 import Link from 'next/link';
 import React from 'react'
 
@@ -33,19 +35,19 @@ function header() {
 
       <div className="flex items-center gap-4">
         <div className="sm:flex sm:gap-4">
-          <a
+          <Link href="signin"
             className="block rounded-md px-5 py-2.5 text-sm font-medium text-white transition hover:bg-white hover:text-black"
-            href="#"
+            
           >
             Login
-          </a>
+          </Link>
 
-          <a
+          <Link href="signup"
             className="hidden rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-black transition hover:bg-gray-200 sm:block"
-            href="#"
+            
           >
             Register
-          </a>
+          </Link>
         </div>
 
         <button
