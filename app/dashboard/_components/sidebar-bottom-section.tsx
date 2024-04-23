@@ -61,12 +61,14 @@ function sidebarBottomSection({ onFileCreate, totalFiles }: any) {
               <input
                 type="text"
                 placeholder="Enter File Name"
-                className="mt-3 border border-gray-400 w-full p-4 rounded-lg "
+                className="mt-3 border border-gray-400 w-full p-4 rounded-lg text-black font-semiBold"
+
+                onChange={(e) => setFileInput(e.target.value)}
               />
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
-            <button type="submit" className="mt-4 bg-blue-600 hover:bg-blue-700 w-full p-2 rounded-md font-bold text-white">Create</button>
+            <button onClick={() => onFileCreate(fileInput)} type="submit" className="mt-4 bg-blue-600 disabled:bg-blue-500 hover:bg-blue-700 w-full p-2 rounded-md font-bold text-white" disabled={!(fileInput&&fileInput.length>3)}>Create</button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
