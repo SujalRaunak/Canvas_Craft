@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import AuthProvider from "./auth-provider/auth-provider";
 import ConvexClientProvider from "./ConvexClientProvider";
-import { ToastContainer } from 'react-toastify';
+import { Toaster } from "@/components/ui/toaster"
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,7 +23,7 @@ export default function RootLayout({
         <ConvexClientProvider>
           <AuthProvider>
             {children} 
-            <ToastContainer position="top-center"/>  
+            <Toaster /> 
           </AuthProvider>
         </ConvexClientProvider>
       </body>
