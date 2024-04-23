@@ -15,7 +15,7 @@ export default function signup() {
   console.log(session);
 
   if (session.status === "authenticated") {
-    router.push("/dashboard");
+    router.push("/teams/create");
   }
 
   const {
