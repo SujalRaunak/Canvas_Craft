@@ -27,7 +27,7 @@ export interface TeamInterface {
   _id: String;
 }
 
-function sidebarTopSection({ user }: any) {
+function sidebarTopSection({ user, setActiveTeamInfo }: any) {
   const menu: MenuInterface = [
     {
       id: 1,
@@ -56,6 +56,10 @@ function sidebarTopSection({ user }: any) {
   useEffect(() => {
     user && getTeamList();
   }, [user]);
+
+  useEffect(() => {
+    activeTeam && setActiveTeamInfo(activeTeam);
+  }, [activeTeam]);
 
   const convex = useConvex();
   const getTeamList = async () => {

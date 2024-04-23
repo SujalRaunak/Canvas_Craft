@@ -5,6 +5,8 @@ import { useConvex, useMutation, useQuery } from "convex/react";
 import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
+import DashHeader from "./_components/dashboard-header";
+import FileList from "./_components/fileList";
 
 function Dashboard() {
   const session = useSession();
@@ -40,17 +42,11 @@ function Dashboard() {
 
   if (session.status === "authenticated") {
     return (
-      <>
-        <div className="flex justify-center items-center gap-10">
-          <p>Dashboard</p>
-          <button
-            onClick={() => signOut()}
-            className="py2 px-4 bg-black text-white border rounded-lg"
-          >
-            Logout
-          </button>
-        </div>
-      </>
+      <div className="p-8">
+        <DashHeader/>
+
+        <FileList/>
+      </div>
     );
   }
 }

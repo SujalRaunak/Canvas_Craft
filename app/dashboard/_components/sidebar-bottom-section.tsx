@@ -49,7 +49,7 @@ function sidebarBottomSection({ onFileCreate, totalFiles }: any) {
       {/* Add New File Button */}
 
       <Dialog>
-        <DialogTrigger className="w-full">
+        <DialogTrigger className="w-full" asChild>
           <button className="w-full bg-blue-600 hover:bg-blue-700 flex justify-start my-3 p-2 rounded-md text-white text-sm font-medium">
             New File
           </button>

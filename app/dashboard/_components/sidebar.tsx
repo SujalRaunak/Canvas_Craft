@@ -5,7 +5,8 @@ import { useSession } from "next-auth/react";
 import { useConvex, useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { getFiles } from "@/convex/files";
-import { toast } from "@/components/ui/use-toast";
+import { toast } from 'sonner'
+import { FileListContext } from "@/app/_context/file-list-context";
 // import { FileListContext } from "@/app/_context/file-list-context";
 function sidebar() {
   const session = useSession();
@@ -15,7 +16,7 @@ function sidebar() {
   const convex = useConvex();
   const createFile = useMutation(api.files.createFile);
   const [totalFiles, setTotalFiles] = useState<Number>();
-  // const { fileList_, setFileList_ } = useContext(FileListContext);
+  const { fileList_, setFileList_ } = useContext(FileListContext);
 
   useEffect(() => {
     activeTeam && getFiles();
@@ -43,10 +44,17 @@ function sidebar() {
     );
   };
 
+  const getFiles = async () => {
+    const result = await convex.query(api.files.getFiles, {teamId: activeTeam?._id});
+    console.log(result);
+    setFileList_(result);
+    setTotalFiles(result.length);
+  }
+
   return (
     <div className="bg-gray-100 h-screen w-72 border-r p-6 flex flex-col">
       <div className="flex-1">
-        <SidebarTopSection user={user} />
+        <SidebarTopSection user={user} setActiveTeamInfo={(activeTeam: TeamInterface) => setActiveTeam(activeTeam)}/>
       </div>
 
       <div>

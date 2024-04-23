@@ -5,7 +5,7 @@ import { useMutation } from "convex/react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
-import { toast } from "react-toastify";
+import { toast } from 'sonner';
 
 function createTeam() {
   const [teamName, setTeamName] = useState("");
@@ -23,7 +23,7 @@ function createTeam() {
       console.log(res);
       if(res) {
         router.push('/dashboard');
-        // toast.success("Team created successfully!!");
+        toast("Team created successfully!!");
       }
     })
   }
