@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import AuthProvider from "./auth-provider/auth-provider";
+import ConvexClientProvider from "./ConvexClientProvider";
+import { ToastContainer } from 'react-toastify';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,8 +19,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <AuthProvider>{children}</AuthProvider>
+      <body className={inter.className} suppressHydrationWarning={true}>
+        <ConvexClientProvider>
+          <AuthProvider>
+            {children} 
+            <ToastContainer position="top-center"/>  
+          </AuthProvider>
+        </ConvexClientProvider>
       </body>
     </html>
   );
