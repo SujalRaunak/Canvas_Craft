@@ -18,6 +18,10 @@ import RawTool from '@editorjs/raw';
 import Warning from '@editorjs/warning';
 // @ts-ignore
 import Paragraph from '@editorjs/paragraph';
+import { api } from '@/convex/_generated/api';
+import { useMutation } from 'convex/react';
+import { toast } from 'sonner';
+import { FileInterface } from '@/app/dashboard/_components/fileList';
 
 const rawDocument={
     "time" : 1550476186479,
@@ -30,22 +34,30 @@ const rawDocument={
         type:'header'
     },
     {
-        data:{
-            level:4
-        },
-        id:"1234",
-        type:'header'
-    }],
+      data:{
+          level:4
+      },
+      id:"1234",
+      type:'header'
+  },
+    ],
     "version" : "2.8.1"
 }
 
-function Editor() {
+function Editor({onSaveTrigger,fileId,fileData}:{onSaveTrigger:any,fileId:any,fileData:FileInterface}) {
 
     const ref = useRef<EditorJS>();
+    const updateDocument=useMutation(api.files.updateDocument);
     const [document, setDcoument] = useState(rawDocument);
     useEffect(() => {
-        initEditor();
-    }, [])
+        fileData&&initEditor();
+    }, [fileData]);
+
+    useEffect(()=>{
+      console.log("trigger Value:",onSaveTrigger);
+      onSaveTrigger && onSaveDocument();
+    },[onSaveTrigger]);
+
     const initEditor= () => {
         const editor = new EditorJS({
             /**
@@ -53,7 +65,13 @@ function Editor() {
              */
              
             tools: { 
-                header: Header, 
+              header: {
+                class: Header,
+                shortcut: 'CMD+SHIFT+H',
+                config:{
+                    placeholder:'Enter a Header'
+                }
+              },
                 list: List,
                 raw: RawTool,
                 paragraph: Paragraph,
@@ -90,9 +108,27 @@ function Editor() {
               }, 
               
             holder: 'editorjs',
-            data: document
+            data: fileData?.document?JSON.parse(fileData.document):rawDocument
           });
           ref.current=editor;
+    }
+
+    const onSaveDocument = () => {
+        if(ref.current) {
+          ref.current.save().then((outputData) => {
+            console.log('Article data: ', outputData)
+            updateDocument({
+              _id: fileId,
+              document: JSON.stringify(outputData)
+            }).then(res => {
+                toast('Document updated!');
+            }, (e) => {
+              toast('Error while updating document');
+            })
+          }).catch((error) => {
+            console.log('Saving failed: ', error)
+          });
+        }
     }
   return (
     <div>
