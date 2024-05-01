@@ -132,7 +132,7 @@ function Editor({onSaveTrigger,fileId,fileData}:{onSaveTrigger:any,fileId:any,fi
     }
   return (
     <div>
-        <div id='editorjs' className='ml-6'>
+        <div id='editorjs' className='ml-2'>
 
         </div>
     </div>
