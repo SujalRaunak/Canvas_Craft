@@ -1,4 +1,4 @@
-import { Archive, Flag, Github } from "lucide-react";
+import { Archive, FilesIcon, Flag, Github } from "lucide-react";
 import React, { useState } from "react";
 import {
   Dialog,
@@ -47,13 +47,16 @@ function sidebarBottomSection({ onFileCreate, totalFiles }: any) {
       {menuList.map((menu, idx) => (
         <h2
           key={idx}
-          className="flex gap-2 p-1 px-2 text-[14px] hover:bg-gray-100 rounded-md cursor-pointer"
+          className="flex gap-2 p-1 px-2 text-[14px] hover:bg-gray-300 rounded-md cursor-pointer"
           onClick={() => onMenuClick(menu)}
         >
           {" "}
           <menu.icon className="h-5 w-5" /> {menu.name}
         </h2>
       ))}
+      <h2 className="flex gap-2 p-1 px-2 text-[14px] hover:bg-gray-300 rounded-md">
+        <FilesIcon className="h-5 w-5"/>Total Files : {totalFiles}
+      </h2>
 
       {/* Add New File Button */}
 
