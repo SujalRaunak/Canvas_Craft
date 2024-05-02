@@ -61,3 +61,15 @@ export const updateWhiteboard=mutation({
         return result;
     },
 })
+
+export const getFileByName = query({
+    args: {
+        fileName: v.string()
+    },
+
+    handler: async (ctx, args) => {
+        const result = await ctx.db.query('files').filter(q=> q.eq(q.field('fileName'), args.fileName)).collect();
+
+        return result;
+    }
+})
