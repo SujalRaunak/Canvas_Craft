@@ -17,7 +17,7 @@ function dashboardlayout({
     const router = useRouter();
     const session = useSession();
     const convex = useConvex();
-    const user = session?.data?.user;
+    const user: any = session?.data?.user;
 
     const [fileList_, setFileList_] = useState();
 

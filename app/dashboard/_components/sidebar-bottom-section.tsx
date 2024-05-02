@@ -9,8 +9,10 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { useRouter } from "next/navigation";
 
 function sidebarBottomSection({ onFileCreate, totalFiles }: any) {
+  const router = useRouter();
   const menuList = [
     {
       id: 1,
@@ -22,7 +24,7 @@ function sidebarBottomSection({ onFileCreate, totalFiles }: any) {
       id: 2,
       name: "Github",
       icon: Github,
-      path: "",
+      path: "https://github.com/Mohitsen11/Canvas_Craft",
     },
     {
       id: 3,
@@ -32,6 +34,12 @@ function sidebarBottomSection({ onFileCreate, totalFiles }: any) {
     },
   ];
 
+  const onMenuClick = (item: any) => {
+    if(item){
+      router.push(`${item.path}`)
+    }
+  }
+
   const [fileInput, setFileInput] = useState('');
 
   return (
@@ -40,6 +48,7 @@ function sidebarBottomSection({ onFileCreate, totalFiles }: any) {
         <h2
           key={idx}
           className="flex gap-2 p-1 px-2 text-[14px] hover:bg-gray-100 rounded-md cursor-pointer"
+          onClick={() => onMenuClick(menu)}
         >
           {" "}
           <menu.icon className="h-5 w-5" /> {menu.name}

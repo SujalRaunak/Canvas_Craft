@@ -16,8 +16,8 @@ import { useRouter } from "next/navigation";
 
 interface MenuInterface {
   id: number;
-  name: string;
-  path: string;
+  name: String;
+  path: String;
   icon: any;
 }
 
@@ -28,7 +28,7 @@ export interface TeamInterface {
 }
 
 function sidebarTopSection({ user, setActiveTeamInfo }: any) {
-  const menu: MenuInterface = [
+  const menu = [
     {
       id: 1,
       name: "Create Team",
@@ -103,9 +103,9 @@ function sidebarTopSection({ user, setActiveTeamInfo }: any) {
           <Separator className="mt-2 bg-slate-100" />
           {/* Option Section */}
           <div>
-            {menu.map((item, idx) => (
+            {menu.map((item) => (
               <h2
-                key={idx}
+                key={item.id}
                 className="flex gap-2 items-center p-2 hover:bg-gray-100 rounded-lg text-sm cursor-pointer"
                 onClick={() => onMenuClick(item)}
               >
