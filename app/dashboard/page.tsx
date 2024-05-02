@@ -1,8 +1,8 @@
 "use client";
 
 import { api } from "@/convex/_generated/api";
-import { useConvex, useMutation, useQuery } from "convex/react";
-import { signOut, useSession } from "next-auth/react";
+import { useConvex, useMutation } from "convex/react";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 import DashHeader from "./_components/dashboard-header";
@@ -13,7 +13,7 @@ function Dashboard() {
   const router = useRouter();
   const convex = useConvex();
 
-  const user = session?.data?.user;
+  const user: any = session?.data?.user;
 
   // const getUser = useQuery(api.user.getUser, {email: user?.email});
   const createUser = useMutation(api.user.createUser);

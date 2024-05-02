@@ -11,7 +11,7 @@ import { FileListContext } from "@/app/_context/file-list-context";
 function sidebar() {
   const session = useSession();
 
-  const user = session?.data?.user;
+  const user: any = session?.data?.user;
   const [activeTeam, setActiveTeam] = useState<TeamInterface | any>();
   const convex = useConvex();
   const createFile = useMutation(api.files.createFile);

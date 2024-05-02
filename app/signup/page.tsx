@@ -7,15 +7,29 @@ import { FieldValues, useForm } from "react-hook-form";
 import Image from "next/image";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { useConvex } from "convex/react";
+import { useEffect } from "react";
+import { api } from "@/convex/_generated/api";
 
 export default function signup() {
   const router = useRouter();
 
   const session = useSession();
+  const convex= useConvex();
+  const user: any = session?.data?.user;
   console.log(session);
 
-  if (session.status === "authenticated") {
-    router.push("/teams/create");
+  useEffect(() => {
+    user&& checkTeam()
+  }, [user]);
+
+  const checkTeam = async () => {
+    const result = await convex.query(api.teams.getTeam, {email: user?.email});
+    console.log("User team detail: ", result);
+
+    if(result.length){
+      router.push('/dashboard');
+    }
   }
 
   const {

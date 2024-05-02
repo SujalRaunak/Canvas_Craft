@@ -1,10 +1,10 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import React from "react";
 
 export default function hero() {
-  const router = useRouter();
+
   return (
     <section className="bg-black min-h-[90vh]">
       <div className="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:items-center">
@@ -23,12 +23,12 @@ export default function hero() {
           </p>
 
           <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <button
+            <Link
               className="block w-full rounded border bg-white px-12 py-3 text-sm font-medium text-black shadow hover:bg-transparent hover:border-sky-300 hover:text-white hover:outline-none hover:ring sm:w-auto"
-              onClick={() => router.push("/signin")}
+              href={'/signin'}
             >
               Get Started
-            </button>
+            </Link>
           </div>
         </div>
       </div>

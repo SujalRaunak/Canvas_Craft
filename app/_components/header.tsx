@@ -16,43 +16,43 @@ function header() {
           <nav aria-label="Global" className="hidden md:block">
             <ul className="flex items-center gap-6 text-sm">
               <li>
-                <a
+                <Link
                   className="text-white transition hover:text-sky-300"
                   href="#"
                 >
                   {" "}
                   About{" "}
-                </a>
+                </Link>
               </li>
 
               <li>
-                <a
+                <Link
                   className="text-white transition hover:text-sky-300"
                   href="#"
                 >
                   {" "}
                   Services{" "}
-                </a>
+                </Link>
               </li>
 
               <li>
-                <a
+                <Link
                   className="text-white transition hover:text-sky-300"
                   href="#"
                 >
                   {" "}
                   Projects{" "}
-                </a>
+                </Link>
               </li>
 
               <li>
-                <a
+                <Link
                   className="text-white transition hover:text-sky-300"
                   href="#"
                 >
                   {" "}
                   Blog{" "}
-                </a>
+                </Link>
               </li>
             </ul>
           </nav>

@@ -63,7 +63,7 @@ function createTeam() {
         </form>
 
         <div className="my-6 bg-blue-600 hover:bg-blue-700 transition w-72 text-center rounded-md">
-          <button disabled={!(teamName&&teamName?.length>5)} onClick={() => createNewTeam()}  className="text-white w-full rounded-md p-4 disabled:bg-blue-500">
+          <button disabled={!(teamName&&teamName?.length>3)} onClick={() => createNewTeam()}  className="text-white w-full rounded-md p-4 disabled:bg-blue-500">
             Create Team
           </button>
         </div>
